@@ -33,7 +33,7 @@ services:
       - drupal-network
     container_name: 'drupal-solr44'
   drush:
-    image: drupaldocker/drush:8
+    image: drupaldocker/drush:7
     networks:
       - drupal-network
     volumes:

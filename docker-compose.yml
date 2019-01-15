@@ -1,0 +1,49 @@
+version: '3.5'
+
+services:
+  db:
+    image: drupaldocker/mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'drupaldb'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'user'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'False'
+    volumes:
+      - db_volume:/var/lib/mysql
+    networks:
+      - drupal-network
+    container_name: 'drupal-mysql'
+  php:
+    image: drupaldocker/php:5.6-apache
+    volumes:
+      - ../docroot:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+      - drupal-network
+    container_name: 'drupal-php'
+  solr44:
+    image: lucasgrecco/solr4
+    volumes:
+      - solr_volume:/home/ubuntu
+    ports:
+      - 8081:8983
+    networks:
+      - drupal-network
+    container_name: 'drupal-solr44'
+  drush:
+    image: drupaldocker/drush:8
+    networks:
+      - drupal-network
+    volumes:
+      - file_volume:/var/www/html
+    container_name: 'drupal-drush'
+volumes:
+  db_volume:
+  file_volume:
+  solr_volume:
+
+networks:
+  drupal-network:
+    driver: bridge

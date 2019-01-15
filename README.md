@@ -13,6 +13,16 @@ After that you just need to run this command:
     docker-compose up --build 
 
 
-If you need to import some dump to your MySQL container:
+### If you need to import some dump to your MySQL container:
 
     docker exec -i drupal-mysql mysql -uroot -proot drupaldb < dumpfile
+    
+### How can I access my project?
+
+To access your Apache you need to access:
+    
+    localhost:8080
+
+To acess your Solr you need to access:
+    
+    localhost:8081 

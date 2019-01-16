@@ -17,6 +17,12 @@ After that you just need to run this command:
 
     docker exec -i drupal-mysql mysql -uroot -proot drupaldb < dumpfile
     
+### How to run Drush commands?
+    
+    docker-compose run drush bash
+    
+Inside this bash you can run your drush commands.
+    
 ### How can I access my project?
 
 To access your Apache you need to access:

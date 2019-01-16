@@ -22,22 +22,36 @@ services:
       - 8080:80
     networks:
       - drupal-network
+    environment:
+      ServerName: 'drupal-php'
+    links:
+      - drush
     container_name: 'drupal-php'
   solr44:
     image: lucasgrecco/solr4
     volumes:
-      - solr_volume:/home/ubuntu
+      - solr_volume:/root/solr-4.4.0
     ports:
       - 8081:8983
     networks:
       - drupal-network
     container_name: 'drupal-solr44'
   drush:
-    image: drupaldocker/drush:7
+    image: drush/drush:7
     networks:
       - drupal-network
     volumes:
-      - file_volume:/var/www/html
+      drush:
+        image: drupaldocker/drush:7
+        networks:
+          - drupal-network
+        volumes:
+          - ../docroot:/var/www/html
+        links:
+          - db
+        container_name: 'drupal-drush'
+    links:
+      - php
     container_name: 'drupal-drush'
 volumes:
   db_volume:

@@ -1,6 +1,6 @@
 # Docker for Drupal 7
 
-### I'm lazy and don't want to read nothing about Docker.
+### I don't want to learn Docker.
 So, you need to install docker engine and docker compose. Google for it.
 This stack uses Apache, PHP 5.6, MySQL 5.6, Drush 7 and Solr 4.4. This is a combo for Drupal 7, an old stack for legacy projects.
 
